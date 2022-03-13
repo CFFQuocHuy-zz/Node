@@ -4,7 +4,7 @@ type BreadType = "long" | "circle";
 
 export type BreadDocument = mongoose.Document & {
   name: string;
-  type: BreadType,
+  type: BreadType;
 };
 
 const breadSchema = new mongoose.Schema<BreadDocument>(
@@ -12,6 +12,6 @@ const breadSchema = new mongoose.Schema<BreadDocument>(
     name: { type: String, unique: true },
     type: { type: String },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 export const Bread = mongoose.model<BreadDocument>("Bread", breadSchema);

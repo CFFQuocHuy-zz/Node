@@ -28,15 +28,22 @@ const app = express();
 const mongoUrl = MONGODB_URI;
 mongoose.Promise = bluebird;
 
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true } ).then(
-  () => { 
-    /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ 
+mongoose
+  .connect(mongoUrl, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
     console.log("Connect MongoDB success");
-  },
-).catch(err => {
-    console.log(`MongoDB connection error. Please make sure MongoDB is running. ${err}`);
+  })
+  .catch(err => {
+    console.log(
+      `MongoDB connection error. Please make sure MongoDB is running. ${err}`
+    );
     // process.exit();
-});
+  });
 
 // Express configuration
 app.set("port", process.env.PORT || 3000);
@@ -45,17 +52,19 @@ app.set("view engine", "pug");
 // app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
+app.use(
+  session({
     resave: true,
     saveUninitialized: true,
     secret: SESSION_SECRET,
     store: new MongoStore({
-        mongoUrl,
-        mongoOptions: {
-            autoReconnect: true
-        }
-    })
-}));
+      mongoUrl,
+      mongoOptions: {
+        autoReconnect: true,
+      },
+    }),
+  })
+);
 // app.use(passport.initialize());
 // app.use(passport.session());
 // app.use(flash())
@@ -81,7 +90,9 @@ app.use((req, res, next) => {
 //   next()
 // })
 
-app.use(express.static(path.join(__dirname, "public"), { maxAge: 31557600000 }));
+app.use(
+  express.static(path.join(__dirname, "public"), { maxAge: 31557600000 })
+);
 
 /**
  * Primary app routes.
