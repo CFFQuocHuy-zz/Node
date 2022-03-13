@@ -37,3 +37,9 @@ jobs:
           script: |
             whoami
             ls -al
+            cd Node
+            git checkout feat/ssh_server
+            git pull origin feat/ssh_server
+            docker-compose -f docker-compose.yml up -d --build
+            yes y | docker image prune
+            echo "*** 3 .Done"
