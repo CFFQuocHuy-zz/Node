@@ -19,7 +19,6 @@
 //     User.findById(id, (err: NativeError, user: UserDocument) => done(err, user));
 // });
 
-
 // /**
 //  * Sign in using Email and Password.
 //  */
@@ -39,7 +38,6 @@
 //     });
 // }));
 
-
 // /**
 //  * OAuth Strategy Overview
 //  *
@@ -54,7 +52,6 @@
 //  *       - If there is, return an error message.
 //  *       - Else create a new account.
 //  */
-
 
 // /**
 //  * Sign in with Facebook.
